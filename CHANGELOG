@@ -1,0 +1,15 @@
+## 2006-02-16 MORI Koichiro <kmori@acm.org>
+
+- **src/yacc.c (usage)**: Version 4.1.4.
+
+## 2006-02-16 MORI Koichiro <kmori@acm.org>
+
+- **src/kmyacc.java.parser, src/kmyacc.js.parser, src/kmyacc.pl.parser**:  
+  Fix the bug of missing `YYDEFAULT` handling in `yyparse` function.
+
+## 2025-02-10 lnear <hi@lnear.dev>
+
+- **src/fileutil.c**:  
+   Fixed a bug preventing compilation on MacOS.
+- **src/genparser.c**:  
+   Allowed trailing comma in generated code.
