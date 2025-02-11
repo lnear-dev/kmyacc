@@ -13,3 +13,8 @@
    Fixed a bug preventing compilation on MacOS.
 - **src/genparser.c**:  
    Allowed trailing comma in generated code.
+
+## 2025-02-11 lnear <hi@lnear.dev>
+
+- **src/genparser.c**:  
+   Added support for `$SIZEOF` operator.

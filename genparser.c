@@ -640,6 +640,35 @@ void gen_enoughtypeof(char *buf, char *var)
   }
   strcpy(buf, enough_type(p, n));
 }
+void gen_sizeof(char *buf, char *var)
+{
+  if (strcmp(var, "yytranslate") == 0)
+    sprintf(buf, "%d", yytranslatesize);
+  else if (strcmp(var, "yyaction") == 0)
+    sprintf(buf, "%d", yyactionsize);
+  else if (strcmp(var, "yycheck") == 0)
+    sprintf(buf, "%d", yyactionsize);
+  else if (strcmp(var, "yybase") == 0)
+    sprintf(buf, "%d", yybasesize);
+  else if (strcmp(var, "yydefault") == 0)
+    sprintf(buf, "%d", nnonleafstates);
+  else if (strcmp(var, "yygoto") == 0)
+    sprintf(buf, "%d", yygotosize);
+  else if (strcmp(var, "yygcheck") == 0)
+    sprintf(buf, "%d", yygotosize);
+  else if (strcmp(var, "yygbase") == 0)
+    sprintf(buf, "%d", nnonts);
+  else if (strcmp(var, "yygdefault") == 0)
+    sprintf(buf, "%d", nnonts);
+  else if (strcmp(var, "yylhs") == 0)
+    sprintf(buf, "%d", nprods);
+  else if (strcmp(var, "yylen") == 0)
+    sprintf(buf, "%d", nprods);
+  else {
+    proto_error("$SIZEOF: unknown variable: %s", var);
+    exit(1);
+  }
+}
 
 
 /* Generate valueof variable */
@@ -843,6 +872,17 @@ global void parser_generate()
         }
         *p++ = '\0';
         gen_enoughtypeof(q, var);
+        q += strlen(q);
+      }
+      else if (metamatch(p, "SIZEOF(")) {
+        char *var = (p += 8);
+        while (*p && *p != ')') p++;
+        if (*p != ')') {
+          proto_error("$SIZEOF: missing ')'", NULL);
+          exit(1);
+        }
+        *p++ = '\0';
+        gen_sizeof(q, var);
         q += strlen(q);
       }
       else
