@@ -664,6 +664,10 @@ void gen_sizeof(char *buf, char *var)
     sprintf(buf, "%d", nprods);
   else if (strcmp(var, "yylen") == 0)
     sprintf(buf, "%d", nprods);
+  else if (strcmp(var, "terminals") == 0)
+    sprintf(buf, "%d", nterms);
+  else if (strcmp(var, "nonterminals") == 0)
+    sprintf(buf, "%d", nnonts);
   else {
     proto_error("$SIZEOF: unknown variable: %s", var);
     exit(1);
